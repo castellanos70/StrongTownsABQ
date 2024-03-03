@@ -13,7 +13,7 @@
     body {
         color: black;
         font-family: 'montserrat';
-        font-size: 120%;
+        font-size: 100%;
         margin: 0;
     }
     img{
@@ -32,92 +32,16 @@
     }
 
 </style>
-    <script>
-        let canvas, ctx;
-        let imageList = []
-        let textColor = "#ffb54a"
-        window.onload = init;
-
-        function init(){
-            canvas = document.getElementById("myCanvas");
-            ctx = canvas.getContext("2d");
-            imageList.push(document.getElementById("image0"));
-            imageList.push(document.getElementById("image1"));
-            imageList.push(document.getElementById("image2"));
-            imageList.push(document.getElementById("image3"));
-            //console.log(imageList)
-        }
-        function hoverImg0() {
-            title = "Next Meeting:";
-            msg = ["Time: March 20th, 6 - 7:30 PM",
-                "Location:",
-                "   Humble Coffee",
-                "   505 Central Ave NW,",
-                "   Albuquerque, NM 87102"
-            ];
-            updateCanvas(0, title, msg);
-        }
-        function hoverImg1() {
-            title = "About Us:";
-            msg = ["Strong Towns ABQ is a local chapter of",
-                "the national Strong Towns, nonprofit",
-                "media advocacy organization.", " ",
-                "Strong Towns produce content that",
-                "analyzes the failures of the post-war",
-                "North American development pattern",
-                "while giving citizens the knowledge",
-                "and tools to start making our places",
-                "better today."
-            ];
-            updateCanvas(1, title, msg);
-        }
-        function hoverImg2() {
-            title = "Mission Statement:";
-            msg = ["We worked on a mission statement in",
-                "February meeting.", " ",
-                "From out Facebook page:",
-                "Let's discuss urbanism within",
-                "Albuquerque and work together to",
-                "improve our city!"
-            ];
-            updateCanvas(2, title, msg);
-        }
-        function hoverImg3() {
-            title = "More Information:";
-            msg = ["Find us on the Facebook as:",
-                "     Strong Towns Albuquerque",
-                "Find us on instagram:",
-                "     @strongtownsabq"
-            ];
-            updateCanvas(3, title, msg);
-        }
-
-        function updateCanvas(n, title, msgList) {
-            ctx.drawImage(imageList[n], 0, 0);
-            ctx.fillStyle = "rgba(0,0,0,0.8)";
-            let boxHeight = 80 + msgList.length * 40;
-            ctx.fillRect(10, 10, 700, boxHeight);
-            ctx.font = "48px montserrat";
-            ctx.fillStyle = textColor;
-            ctx.fillText(title, 15, 50);
-            ctx.font = "32px montserrat";
-            let y = 100
-            for (msg of msgList) {
-                ctx.fillText(msg, 40, y);
-                y += 40;
-            }
-        }
-    </script>
 </head>
 
 
 
 <body>
-<h2 style="text-align:center">Strong Towns ABQ</h2>
+<h1 style="text-align:center">Strong Towns ABQ</h1>
 <table style="width:100%">
     <tr>
         <th><div onmouseover="hoverImg0()" class="div-img">
-            <img id="image0" src='StrongTownsHome.jpg' alt="">
+            <img id="image0" src='images/StrongTownsHome.jpg' alt="">
         </div></th>
         <td rowspan="4">
             <canvas id="myCanvas" width="1100px" height="730px"></canvas>
@@ -125,22 +49,107 @@
     </tr>
     <tr>
         <th><div onmouseover="hoverImg1()" class="div-img">
-            <img id="image1" src='BalloonsOverRioGrande.png' alt="">
+            <img id="image2" src='images/2019-08-ABQ-fromPinoTrail.jpg' alt="">
         </div></th>
     </tr>
     <tr>
         <th><div onmouseover="hoverImg2()" class="div-img">
-            <img id="image2" src='DownTownAndRioGrande.png' alt="">
+            <img id="image1" src='images/2007-12-LaLuzTrail.jpg' alt="">
         </div></th>
     </tr>
     <tr>
         <th><div onmouseover="hoverImg3()" class="div-img">
-            <img id="image3" src='oldtown.png' alt="">
+            <img id="image3" src='images/2022-03-CherryBlossomsInSnow-NorthEastHeights.jpg' alt="">
         </div></th>
     </tr>
+    <th> </th>
+    <td>
+        <p id="ImageInfo"> hello </p>
+    </td>
 </table>
 
 
+<script>
+    let canvas, ctx;
+    let imageList = [];
+    let textColor = "#ffb54a";
+    let imageInfo = document.getElementById("ImageInfo");
+    window.onload = init;
 
+    function init(){
+        canvas = document.getElementById("myCanvas");
+        ctx = canvas.getContext("2d");
+        imageList.push(document.getElementById("image0"));
+        imageList.push(document.getElementById("image1"));
+        imageList.push(document.getElementById("image2"));
+        imageList.push(document.getElementById("image3"));
+        //console.log(imageList)
+        hoverImg0();
+    }
+    function hoverImg0() {
+        title = "Next Meeting:";
+        msg = ["Time: March 20th, 6 - 7:30 PM",
+            "Location:",
+            "   Humble Coffee",
+            "   505 Central Ave NW,",
+            "   Albuquerque, NM 87102"
+        ];
+        imageInfo.innerHTML= "(need to find who created this image)";
+        updateCanvas(0, title, msg);
+    }
+    function hoverImg1() {
+        title = "About Us:";
+        msg = ["Strong Towns ABQ is a local chapter of",
+            "the national Strong Towns, nonprofit",
+            "media advocacy organization.", " ",
+            "Strong Towns produce content that",
+            "analyzes the failures of the post-war",
+            "North American development pattern",
+            "while giving citizens the knowledge",
+            "and tools to start making our places",
+            "better today."
+        ];
+        imageInfo.innerHTML= "Albuquerque as seen from Pi&ntilde;o Trail, Aug 2019, photo by Joel Castellanos";
+        updateCanvas(1, title, msg);
+    }
+    function hoverImg2() {
+        title = "Mission Statement:";
+        msg = ["We worked on a mission statement in",
+            "February meeting.", " ",
+            "From out Facebook page:",
+            "Let's discuss urbanism within",
+            "Albuquerque and work together to",
+            "improve our city!"
+        ];
+        imageInfo.innerHTML= "View of Sandia Mountain from La Luz Trail, Dec 2007, photo by Joel Castellanos";
+        updateCanvas(2, title, msg);
+    }
+    function hoverImg3() {
+        title = "More Information:";
+        msg = ["Find us on the Facebook as:",
+            "     Strong Towns Albuquerque",
+            "Find us on instagram:",
+            "     @strongtownsabq"
+        ];
+        updateCanvas(3, title, msg);
+        imageInfo.innerHTML= "Cherry Blossoms, Avenida de la Luna in North East Heights, Mar 2022, photo by Joel Castellanos";
+    }
+
+    function updateCanvas(n, title, msgList) {
+        ctx.drawImage(imageList[n], 0, 0);
+        ctx.fillStyle = "rgba(0,0,0,0.8)";
+        let boxHeight = 80 + msgList.length * 40;
+        ctx.fillRect(10, 10, 700, boxHeight);
+        ctx.font = "48px montserrat";
+        ctx.fillStyle = textColor;
+        ctx.fillText(title, 15, 50);
+        ctx.font = "32px montserrat";
+        let y = 100
+        for (msg of msgList) {
+            ctx.fillText(msg, 40, y);
+            y += 40;
+        }
+    }
+</script>
 </body>
 </html>
